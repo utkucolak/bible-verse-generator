@@ -51,9 +51,11 @@ model = create_model()
 
 
 model.compile(optimizer='adam', loss='mse', metrics=['mean_squared_error'])
-model.fit(x_train, y, epochs=7, batch_size=16)
-model.save_weights(checkpoint_path)
-string_mapped = data_train[99]
+#model.fit(x_train, y, epochs=7, batch_size=16)
+#model.save_weights(checkpoint_path)
+model.load_weights(checkpoint_path)
+
+string_mapped = data_train[np.random.randint(0, len(data_train) - 1)]
 last_string = [n_2_chr[value] for value in string_mapped]
 for i in range(seq_length):
     x = np.reshape(string_mapped, (1, len(string_mapped),1))
